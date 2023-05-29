@@ -1,3 +1,4 @@
+''' script to seperate ancestor and extant '''
 from pysam import FastaFile,FastxFile
 import sys
 
