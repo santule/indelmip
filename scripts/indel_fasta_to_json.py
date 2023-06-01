@@ -5,8 +5,10 @@ from pysam import FastaFile,FastxFile
 from ete3 import Tree
 import sys
 
-def fasta_to_json(indel_fasta_solution_file,nwk_file,asr_json_file):
+def fasta_to_json():
 
+    indel_fasta_solution_file = 'mip_ancestor_indel.fasta'
+    asr_json_file = 'ASR.json'
     # read the asr json file
     f = open(asr_json_file)
     asr_json_data = json.load(f)
@@ -58,12 +60,6 @@ def fasta_to_json(indel_fasta_solution_file,nwk_file,asr_json_file):
     with open('ASR_MIP.json', 'w') as outfile:
         json.dump(asr_json_data, outfile)
 
-def main():
-    indel_fasta_solution_file = sys.argv[1]
-    nwk_file =  sys.argv[2]
-    asr_json_file = sys.argv[3]
-
-    fasta_to_json(indel_fasta_solution_file,nwk_file,asr_json_file)
 
 if __name__ == "__main__":
-  main()
+  fasta_to_json()
