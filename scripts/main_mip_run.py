@@ -1,10 +1,10 @@
-''' main python file to run mip inference and get solution, visuals and other stats '''
+''' main python file to run mip inference and get solution, and other stats '''
+
 import sys
 import getopt
 import indel_scoring
 import new_old_patterns
 import indel_events_count
-import visualise_sol
 import mipindel
 
 # help function
@@ -37,24 +37,20 @@ def main():
         help()
 
     # Run MIP
-    print("RUNNING MIP")
+    print("1 - RUNNING MIP")
     mipindel.main(alignment_file,nwk_file_path,output_file_location)
 
     # Indel Scoring
-    print("RUNNING INDEL SCORING")
+    print("2 - RUNNING INDEL SCORING")
     indel_scoring.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
     # Indel event count
-    print("RUNNING INDEL COUNTS")
+    print("3 - RUNNING INDEL COUNTS")
     indel_events_count.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
     # New Old pattern count
-    print("RUNNING INDEL OLD/NEW PATTERNS")
+    print("4 - RUNNING INDEL OLD/NEW PATTERNS")
     new_old_patterns.main(nwk_file_path,'mip_ancestor_indel.fasta')
-
-    # Visualise solution
-    print("CREATING VISUALISATION")
-    visualise_sol.main(nwk_file_path,'mip_ancestor_indel.fasta',"mip")
 
 if __name__ == "__main__":
   main()

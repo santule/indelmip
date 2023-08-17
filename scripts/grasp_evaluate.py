@@ -4,7 +4,6 @@ import getopt
 import indel_scoring
 import new_old_patterns
 import indel_events_count
-import visualise_sol
 import grasp_output_process
 
 # help function
@@ -41,24 +40,21 @@ def main():
 
 
     # Combine ancestor and extant sequences
-    print("COMBINE THE FASTA FILES AND CONVERT TO BINARY")
+    print("1 - COMBINE THE FASTA FILES AND CONVERT TO BINARY")
     grasp_output_process.main(ancestor_file,extant_file,grasp_indel_method)
 
     # Indel Scoring
-    print("RUNNING INDEL SCORING")
-    indel_scoring.main(nwk_file_path,'bep_grasp_all_indel.fasta')
+    print("2 - RUNNING INDEL SCORING")
+    indel_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
     # Indel event count
-    print("RUNNING INDEL COUNTS")
+    print("3 - RUNNING INDEL COUNTS")
     indel_events_count.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
     # New Old pattern count
-    print("RUNNING INDEL OLD/NEW PATTERNS")
+    print("4 - RUNNING INDEL OLD/NEW PATTERNS")
     new_old_patterns.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
-    # Visualise solution
-    print("CREATING VISUALISATION")
-    visualise_sol.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta',"bep")
 
 if __name__ == "__main__":
   main()
