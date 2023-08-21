@@ -6,6 +6,7 @@ import indel_scoring
 import new_old_patterns
 import indel_events_count
 import mipindel
+import check_distribution
 
 # help function
 def help():
