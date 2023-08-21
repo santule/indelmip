@@ -4,7 +4,7 @@ import getopt
 import indel_scoring
 import new_old_patterns
 import indel_events_count
-import grasp_output_process
+import grasp_output_process,check_distribution
 
 # help function
 def help():
@@ -54,6 +54,10 @@ def main():
     # New Old pattern count
     print("4 - RUNNING INDEL OLD/NEW PATTERNS")
     new_old_patterns.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+
+    # Out of distribution
+    print("5 - CHECK OUT OF DISTRIBUTION PATTERNS")
+    check_distribution.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta',extant_file,True)
 
 
 if __name__ == "__main__":

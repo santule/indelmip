@@ -52,5 +52,9 @@ def main():
     print("4 - RUNNING INDEL OLD/NEW PATTERNS")
     new_old_patterns.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
+    # Out of distribution
+    print("5 - CHECK OUT OF DISTRIBUTION PATTERNS")
+    check_distribution.main(nwk_file_path,'mip_ancestor_indel.fasta',alignment_file,False)
+
 if __name__ == "__main__":
   main()
