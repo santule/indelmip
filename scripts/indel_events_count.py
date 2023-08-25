@@ -54,8 +54,8 @@ def count_indel_events(treefile,indelfastafile):
                 parent_node_sequence = indel_pattern.fetch(parent_node)
             else:
                 parent_node_sequence = current_node_sequence
-            mut_ret   = count_mutations(parent_node_sequence,current_node_sequence,child_seq_1,child_seq_2)
-            total_mut =  list(map(add, total_mut, mut_ret))
+        mut_ret   = count_mutations(parent_node_sequence,current_node_sequence,child_seq_1,child_seq_2)
+        total_mut =  list(map(add, total_mut, mut_ret))
     return total_mut
 
 

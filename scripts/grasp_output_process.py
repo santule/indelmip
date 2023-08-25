@@ -44,7 +44,7 @@ def convert_grasp_fasta_to_binary(**kwargs):
     ancestor_indel_list = []
     ancestor_name = []
 
-    with FastxFile(kwargs['fasta_file_name']) as fh:
+    with FastxFile(kwargs['output_folder_location'] + '/' + kwargs['fasta_file_name']) as fh:
         for entry in fh:
             # add start and end string to the sequence
             seq_name = entry.name
@@ -79,11 +79,14 @@ def combine_extant_ancestor_data(**kwargs):
 
     with open(kwargs['output_folder_location'] + '/' + kwargs['grasp_indel_method'] + '_grasp_all.fasta' , 'w') as file:
         file.write(extant_info)
-    print(f"Successfully created the indel fasta file - {kwargs['grasp_indel_method'] + '_grasp_all.fasta'}")
+    print(f"Successfully created the fasta file - {kwargs['grasp_indel_method'] + '_grasp_all.fasta'}")
 
 
 # main function
 def main(ancestor_fasta_file_name,extant_fasta_file_name,grasp_indel_method):
+
+        pr = extant_fasta_file_name.split("/")[0]
+        print(pr)
         kwargs_parameter = {'output_folder_location':'.','extant_fasta_file':extant_fasta_file_name,\
                             'ancestor_fasta_file':ancestor_fasta_file_name ,'grasp_indel_method':grasp_indel_method}
         combine_extant_ancestor_data(**kwargs_parameter)

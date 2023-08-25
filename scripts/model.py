@@ -158,7 +158,7 @@ class PhyloTreeMIP:
                         self.objective.append(self.diff[(node,node_neighbor_item,pos)])
 
                         # O - add penalty to the objective
-                        self.objective.append(2 * pen[pos])
+                        self.objective.append(5 * pen[pos])
 
                     else:
                         # C - Abs constraints
@@ -177,7 +177,7 @@ class PhyloTreeMIP:
                         self.objective.append(diff_pos[pos])
 
                         # O - add penalty to the objective
-                        self.objective.append(2 * pen[pos])
+                        self.objective.append(5 * pen[pos])
 
     def train(self,n_threads,time_out):
         # Params
