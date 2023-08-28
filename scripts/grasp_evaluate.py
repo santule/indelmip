@@ -5,6 +5,7 @@ import indel_scoring
 import new_old_patterns
 import indel_events_count
 import grasp_output_process,check_distribution,ancestor_3_mutation_away
+from utils import write_to_file
 
 # help function
 def help():
@@ -45,7 +46,7 @@ def main():
 
     # Indel Scoring
     print("2 - RUNNING INDEL SCORING")
-    indel_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+    score = indel_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
     # Indel event count
     print("3 - RUNNING INDEL COUNTS")
@@ -53,15 +54,23 @@ def main():
 
     # New Old pattern count
     print("4 - RUNNING INDEL OLD/NEW PATTERNS")
-    new_old_patterns.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+    extant_pattern,new_pattern = new_old_patterns.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
     # Out of distribution
     print("5 - CHECK OUT OF DISTRIBUTION PATTERNS")
-    check_distribution.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta',extant_file,True)
+    out_dist_percent = check_distribution.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta',extant_file,True)
 
     # 3 mutation away ancestors
     print("6 - ANCESTORS 3 MUTATIONS AWAY")
-    ancestor_3_mutation_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+    total_ancestors_i3_mut,percent_ancestors_with_3_mut = ancestor_3_mutation_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+
+    # write all numbers to the files
+    print("7 - WRITING METRICS TO THE FILE")
+    write_to_file(grasp_indel_method + '_score.csv',score,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_new_pattern.csv',new_pattern,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_out_dist_percent.csv',out_dist_percent,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,grasp_indel_method)
+
 
 
 if __name__ == "__main__":

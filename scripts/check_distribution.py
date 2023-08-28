@@ -93,6 +93,7 @@ def main(nwk_file_path,indel_fasta_solution_file,extant_alignment_file,add_start
     # get the parimony score
     out_pattern_percent = check_ancestor_indel_distribution(nwk_file_path,indel_fasta_solution_file,extant_alignment_file,add_start_end)
     print(f"Total Ancestor indel patterns out of extant indel pattern distribution {out_pattern_percent}")
+    return out_pattern_percent
 
 if __name__ == "__main__":
-  main(nwk_file_path,indel_fasta_solution_file,extant_alignment_file,add_start_end)
+  out_pattern_percent = main(nwk_file_path,indel_fasta_solution_file,extant_alignment_file,add_start_end)

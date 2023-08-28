@@ -9,6 +9,13 @@ import pickle
 import sys
 import pickle
 
+# write to file function
+def write_to_file(filename,eval_metric,method):
+    f = open(filename, "w")
+    f.write(method + ',' + str(eval_metric))
+    f.close()
+
+
 # class with functions to build data structures
 class IndelsInfo:
     def __init__(self,fasta_file,nwk_file_path,folder_location):

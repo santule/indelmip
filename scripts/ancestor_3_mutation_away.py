@@ -59,6 +59,7 @@ def main(nwk_file_path,indel_fasta_solution_file):
     print(total_i3_mut,percent_ancestor_with_3_mut)
     print(f"Total ancestors with pattern 3 mutations away:{total_i3_mut}")
     print(f"% ancestors with pattern 3 mutations away:{percent_ancestor_with_3_mut}")
+    return total_i3_mut,percent_ancestor_with_3_mut
 
 if __name__ == "__main__":
-  main(nwk_file_path,indel_fasta_solution_file)
+  total_i3_mut,percent_ancestor_with_3_mut = main(nwk_file_path,indel_fasta_solution_file)

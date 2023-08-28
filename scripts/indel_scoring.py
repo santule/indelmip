@@ -50,6 +50,7 @@ def main(nwk_file_path,indel_fasta_solution_file):
     # get the parimony score
     parsiscore = score_tree_indels(nwk_file_path,indel_fasta_solution_file)
     print(f"The overall indel score is {parsiscore}")
+    return parsiscore
 
 if __name__ == "__main__":
-  main(nwk_file_path,indel_fasta_solution_file)
+  parsiscore = main(nwk_file_path,indel_fasta_solution_file)

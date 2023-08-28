@@ -41,5 +41,7 @@ def main(nwk_file_path,indel_fasta_solution_file):
     extant_pattern,new_pattern = score_tree_indels(nwk_file_path,indel_fasta_solution_file)
     print(f"Total {extant_pattern} extant patterns and {new_pattern} new patterns used to create ancestors")
 
+    return extant_pattern,new_pattern
+
 if __name__ == "__main__":
-  main(nwk_file_path,indel_fasta_solution_file)
+  extant_pattern,new_pattern = main(nwk_file_path,indel_fasta_solution_file)
