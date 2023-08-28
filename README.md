@@ -9,5 +9,5 @@ python main_mip_run.py -a CYP2U_165.aln -n CYP2U_165_ancestors.nwk -o '.'
 
 To evaluate MIP solution 
 ```
-python mip_evaluate.py -e  CYP2U_165.aln -n CYP2U_165_ancestors.nwk -o
+python mip_evaluate.py -e  CYP2U_165.aln -n CYP2U_165_ancestors.nwk
 ```
