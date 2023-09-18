@@ -2,11 +2,7 @@
 
 import sys
 import getopt
-import indel_scoring
-import new_old_patterns
-import indel_events_count
 import mipindel
-import check_distribution,ancestor_3_mutation_away
 
 # help function
 def help():
@@ -40,26 +36,6 @@ def main():
     # Run MIP
     print("1 - RUNNING MIP")
     mipindel.main(alignment_file,nwk_file_path,output_file_location)
-
-    # # Indel Scoring
-    # print("2 - RUNNING INDEL SCORING")
-    # indel_scoring.main(nwk_file_path,'mip_ancestor_indel.fasta')
-    #
-    # # Indel event count
-    # print("3 - RUNNING INDEL COUNTS")
-    # indel_events_count.main(nwk_file_path,'mip_ancestor_indel.fasta')
-    #
-    # # New Old pattern count
-    # print("4 - RUNNING INDEL OLD/NEW PATTERNS")
-    # new_old_patterns.main(nwk_file_path,'mip_ancestor_indel.fasta')
-    #
-    # # Out of distribution
-    # print("5 - CHECK OUT OF DISTRIBUTION PATTERNS")
-    # check_distribution.main(nwk_file_path,'mip_ancestor_indel.fasta',alignment_file,False)
-    #
-    # # 3 mutation away ancestors
-    # print("6 - ANCESTORS 3 MUTATIONS AWAY")
-    # ancestor_3_mutation_away.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
 if __name__ == "__main__":
   main()

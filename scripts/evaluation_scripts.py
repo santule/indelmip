@@ -36,10 +36,9 @@ def main():
         help()
 
     script_folder = '/media/WorkingSpace/Share/mipindel/scripts/'
+    
     # Run evaluation scripts
-
-    for pr in ['CYP2U_165']:
-        #,'MBL_243','CYP2U_359','GDH-#GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','DHAD_1612','DHAD_1658','ALS_1990','MBL_624','CYP_3000']:
+    for pr in ['CYP2U_165','MBL_243','CYP2U_359','GDH-#GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','DHAD_1612','DHAD_1658','ALS_1990','MBL_624','CYP_3000']:
 
       print(f"Processing protein family {pr}")
       align_file = pr + '.aln'

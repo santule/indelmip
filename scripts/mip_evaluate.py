@@ -3,10 +3,7 @@
 
 import sys
 import getopt
-import indel_scoring
-import new_old_patterns
-import indel_events_count
-import check_distribution,ancestor_3_mutation_away
+import objective_scoring,indel_scoring,new_old_patterns,check_distribution,ancestor_3_mutation_away,ancestor_2_mutation_away
 from utils import write_to_file
 
 # help function
@@ -35,15 +32,14 @@ def main():
 
     if nwk_file_path is None or alignment_file is None:
         help()
-
+    
+    # Objective Scoring
+    print("2 - RUNNING OBJECTIVE SCORING")
+    objscore = objective_scoring.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
     # Indel Scoring
-    print("2 - RUNNING INDEL SCORING")
-    score = indel_scoring.main(nwk_file_path,'mip_ancestor_indel.fasta')
-
-    # Indel event count
-    print("3 - RUNNING INDEL COUNTS")
-    indel_events_count.main(nwk_file_path,'mip_ancestor_indel.fasta')
+    print("3 - RUNNING INDEL SCORING")
+    indscore = indel_scoring.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
     # New Old pattern count
     print("4 - RUNNING INDEL OLD/NEW PATTERNS")
@@ -57,14 +53,18 @@ def main():
     print("6 - ANCESTORS 3 MUTATIONS AWAY")
     total_ancestors_i3_mut,percent_ancestors_with_3_mut = ancestor_3_mutation_away.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
+    # 3 mutation away ancestors
+    print("7 - ANCESTORS 2 MUTATIONS AWAY")
+    total_ancestors_i2_mut,percent_ancestors_with_2_mut = ancestor_2_mutation_away.main(nwk_file_path,'mip_ancestor_indel.fasta')
+
     # write all numbers to the files
-    print("7 - WRITING METRICS TO THE FILE")
-    write_to_file('mip_score.csv',score,'mip')
+    print("8 - WRITING METRICS TO THE FILE")
+    write_to_file('mip_objscore.csv',objscore,'mip')
+    write_to_file('mip_indscore.csv',indscore,'mip')
     write_to_file('mip_new_pattern.csv',new_pattern,'mip')
     write_to_file('mip_out_dist_percent.csv',out_dist_percent,'mip')
     write_to_file('mip_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,'mip')
-
-
+    write_to_file('mip_percent_ancestors_with_2_mut.csv',percent_ancestors_with_2_mut,'mip')
 
 if __name__ == "__main__":
   main()

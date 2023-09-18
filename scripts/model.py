@@ -152,13 +152,16 @@ class PhyloTreeMIP:
                             self.m.addConstr(pen[pos] == self.diff[(node,node_neighbor_item,pos)])
                         else:
                             self.m.addConstr(pen[pos] >= self.diff[(node,node_neighbor_item,pos)] -\
-                                             self.diff[(node,node_neighbor_item,pos-1)])
+                                            self.diff[(node,node_neighbor_item,pos-1)])
+                            
+                            self.m.addConstr(pen[pos] >= node_neighbor_pos_var[pos-1] + (1 - node_pos_var[pos-1]) + (1 - node_neighbor_pos_var[pos]) + node_pos_var[pos] -3)
+                            self.m.addConstr(pen[pos] >= node_neighbor_pos_var[pos] + (1 - node_pos_var[pos]) + (1 - node_neighbor_pos_var[pos-1]) + node_pos_var[pos-1] -3)
 
                         # O - add difference to the objective
                         self.objective.append(self.diff[(node,node_neighbor_item,pos)])
 
                         # O - add penalty to the objective
-                        self.objective.append(1 * pen[pos])
+                        self.objective.append(2 * pen[pos])
 
                     else:
                         # C - Abs constraints
@@ -172,12 +175,15 @@ class PhyloTreeMIP:
                             self.m.addConstr(pen[pos] == diff_pos[pos])
                         else:
                             self.m.addConstr(pen[pos] >= diff_pos[pos] - diff_pos[pos-1])
+                            self.m.addConstr(pen[pos] >= node_neighbor_pos_var[pos-1] + (1 - node_pos_var[pos-1]) + (1 - node_neighbor_pos_var[pos]) + node_pos_var[pos] -3)
+                            self.m.addConstr(pen[pos] >= node_neighbor_pos_var[pos] + (1 - node_pos_var[pos]) + (1 - node_neighbor_pos_var[pos-1]) + node_pos_var[pos-1] -3)
+
 
                         # O - add difference to the objective
                         self.objective.append(diff_pos[pos])
 
                         # O - add penalty to the objective
-                        self.objective.append(1 * pen[pos])
+                        self.objective.append(2 * pen[pos])
 
     def train(self,n_threads,time_out):
         # Params
@@ -193,7 +199,7 @@ class PhyloTreeMIP:
         self.m.update()
 
         # save the model
-        #self.m.write(self.mip_model_file )
+        #self.m.write('mip_log.lp')
         self.m.optimize()
 
         #Is feasible?
@@ -237,4 +243,26 @@ class PhyloTreeMIP:
                 preferred_path.append(str(int(self.ancestorsequence[ancestor][pos].X)))
             preferred_path.append('1') # end position
             all_node_paths[ancestor] = "".join(preferred_path)
+
+        # understand the objective score
+        # score_dict = {}
+        # overall_score = 0
+        # for node,node_neighbor in self.neighbor_dict.items():
+        #     for node_neighbor_item in node_neighbor:
+        #         total_score_1 = 0
+        #         total_score_2 = 0
+        #         pen_id  = (node,node_neighbor_item)
+        #         diff_id = (node,node_neighbor_item)
+                
+        #         for pos in range(1,self.sequence_length - 1): # penalty start from 1st position only
+                    
+        #             total_score_1 = total_score_1 + 2 * int(self.penalty[pen_id][pos].X)
+        #             total_score_2 = total_score_2 + int(self.diff[diff_id][pos].X)
+                
+        #         print(f"Sequence for node {node} is {all_node_paths[node]}")
+        #         print(f"Sequence for node {node_neighbor_item} is {all_node_paths[node_neighbor_item]}")
+        #         print(f"Difference Score between {node} and {node_neighbor_item} is {total_score_2}")
+        #         print(f"Penalty Score between {node} and {node_neighbor_item} is {total_score_1}")
+        #         print(f"Total score is {total_score_1 + total_score_2}")
+
         return all_node_paths

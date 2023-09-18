@@ -1,25 +1,29 @@
-''' script to score indel event difference for pairwise ancestor-child across the whole tree '''
+''' script to calculate objective score for a solution '''
 
 from ete3 import Tree
 from pysam import FastaFile,FastxFile
+import sys
+import getopt
 
-''' Function to calculate indel events for the whole tree for a given indel solution'''
-def indel_events(str1,str2):
-    dis = 0
+''' Function to calculate objective score for the whole tree for a given indel solution'''
+def sequence_obj_score(str1,str2):
+    objscore = 0
     prev_dis = 0
+    curr_dis = 0
 
     for i in range(0,len(str1)):
-        curr_dis = int(str1[i]) - int(str2[i])
+        curr_dis  = int(str1[i]) - int(str2[i])
         
         if curr_dis != 0 and curr_dis != prev_dis:
-            dis += 1
+            objscore += 2
+            
+        objscore += abs(curr_dis)
         prev_dis = curr_dis
         
-    return dis
+    return objscore
 
-def score_tree_indels(treefile,indelfastafile):
-    indelevents_cnt = 0
-    
+def score_tree_objective(treefile,indelfastafile):
+    obj_score = 0
     # load the fasta file
     indel_pattern = FastaFile(indelfastafile)
     # load the tree
@@ -36,17 +40,17 @@ def score_tree_indels(treefile,indelfastafile):
             child_seq_2 = indel_pattern.fetch(n.children[1].name)
 
             # calculate score
-            indelevents_cnt += indel_events(current_node_sequence,child_seq_1)
-            indelevents_cnt += indel_events(current_node_sequence,child_seq_2)
+            obj_score += sequence_obj_score(current_node_sequence,child_seq_1)
+            obj_score += sequence_obj_score(current_node_sequence,child_seq_2)
 
-    return indelevents_cnt
+    return obj_score
 
 # main function
 def main(nwk_file_path,indel_fasta_solution_file):
     # get the parimony score
-    indelevents = score_tree_indels(nwk_file_path,indel_fasta_solution_file)
-    print(f"The total indel events are {indelevents}")
-    return indelevents
+    obj_score = score_tree_objective(nwk_file_path,indel_fasta_solution_file)
+    print(f"The objective score is {obj_score}")
+    return obj_score
 
 if __name__ == "__main__":
-    indelevents = main(nwk_file_path,indel_fasta_solution_file)
+    obj_score = main(nwk_file_path,indel_fasta_solution_file)

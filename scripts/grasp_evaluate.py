@@ -1,10 +1,7 @@
 ''' main python file to run mip inference and get solution, visuals and other stats '''
 import sys
 import getopt
-import indel_scoring
-import new_old_patterns
-import indel_events_count
-import grasp_output_process,check_distribution,ancestor_3_mutation_away
+import grasp_output_process,objective_scoring,indel_scoring,new_old_patterns,check_distribution,ancestor_3_mutation_away,ancestor_2_mutation_away
 from utils import write_to_file
 
 # help function
@@ -44,13 +41,13 @@ def main():
     print("1 - COMBINE THE FASTA FILES AND CONVERT TO BINARY")
     grasp_output_process.main(ancestor_file,extant_file,grasp_indel_method)
 
-    # Indel Scoring
-    print("2 - RUNNING INDEL SCORING")
-    score = indel_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+    # Objective Scoring
+    print("2 - RUNNING OBJECTIVE SCORING")
+    objscore = objective_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
-    # Indel event count
-    print("3 - RUNNING INDEL COUNTS")
-    indel_events_count.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+    # Indel Scoring
+    print("3 - RUNNING INDEL SCORING")
+    indscore = indel_scoring.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
     # New Old pattern count
     print("4 - RUNNING INDEL OLD/NEW PATTERNS")
@@ -64,12 +61,18 @@ def main():
     print("6 - ANCESTORS 3 MUTATIONS AWAY")
     total_ancestors_i3_mut,percent_ancestors_with_3_mut = ancestor_3_mutation_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
+    # 2 mutation away ancestors
+    print("7 - ANCESTORS 3 MUTATIONS AWAY")
+    total_ancestors_i2_mut,percent_ancestors_with_2_mut = ancestor_2_mutation_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+
     # write all numbers to the files
-    print("7 - WRITING METRICS TO THE FILE")
-    write_to_file(grasp_indel_method + '_score.csv',score,grasp_indel_method)
+    print("8 - WRITING METRICS TO THE FILE")
+    write_to_file(grasp_indel_method + '_objscore.csv',objscore,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_indscore.csv',indscore,grasp_indel_method)
     write_to_file(grasp_indel_method + '_new_pattern.csv',new_pattern,grasp_indel_method)
     write_to_file(grasp_indel_method + '_out_dist_percent.csv',out_dist_percent,grasp_indel_method)
     write_to_file(grasp_indel_method + '_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_percent_ancestors_with_2_mut.csv',percent_ancestors_with_2_mut,grasp_indel_method)
 
 
 
