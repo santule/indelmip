@@ -17,6 +17,7 @@ def check_stats(folder,detail_print=False):
     for (sub_folder, _, _) in walk(folder):
         if sub_folder != folder:
             sub_folder = sub_folder + '/'
+            print(sub_folder)
             desired_length  = int(str(sub_folder).split('/')[-2].split('l')[-1].split('e')[0])
             desired_eff     = int(str(sub_folder).split('/')[-2].split('l')[-1].split('e')[1])
             desired_num_seq = int(str(sub_folder).split('/')[-2].split('l')[0].split('t')[1])

@@ -16,12 +16,13 @@ def eff_pos_100(base_folder):
             for eff_pos in [100]:
                 
                 print(f"Travis making indel patterns with {num_extant} extants of {seq_len} each and {eff_pos} effective positions")
-                isExist = os.path.exists('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
+                isExist = os.path.exists(str(base_folder) + 't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
                 if not isExist:
                     #print("Make directory")
-                    os.mkdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    os.chdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    print(os.getcwd())
+                    os.mkdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
+                
+                os.chdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
+                #print(os.getcwd())
 
                 cmd = "travis {seq} -out all_sequences.aln -nwk input_tree.nwk -model LG  -gap -format FASTA  -seed 100 -extants {num_extants}  -dist {dist}"\
                     .format(seq = s,num_extants=num_extant,dist=d)
@@ -101,6 +102,7 @@ if __name__ == "__main__":
   eff_pos_60(base_folder)
   eff_pos_20(base_folder)
   print("Finished running Travis")
+  
   # post processing of travis
   print("Starting post processing of Travis data")
   travis_post_processing.make_extants(base_folder)
