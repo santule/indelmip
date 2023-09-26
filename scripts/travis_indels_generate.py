@@ -51,9 +51,9 @@ def eff_pos_60(base_folder):
                 isExist = os.path.exists('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
                 if not isExist:
                     #print("Make directory")
-                    os.mkdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    os.chdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    print(os.getcwd())
+                    os.mkdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
+                
+                os.chdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
 
                 cmd = "travis {seq} -out all_sequences.aln -nwk input_tree.nwk -model LG  -gap -format FASTA  -seed 100 -extants {num_extants}  -dist {dist}"\
                     .format(seq=s,num_extants=num_extant,dist=d)
@@ -81,9 +81,9 @@ def eff_pos_20(base_folder):
                 isExist = os.path.exists('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
                 if not isExist:
                     #print("Make directory")
-                    os.mkdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    os.chdir('./t' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
-                    print(os.getcwd())
+                    os.mkdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
+                
+                os.chdir(str(base_folder)  +  't' + str(num_extant) + 'l' + str(seq_len) + 'e' + str(eff_pos))
 
                 cmd = "travis {seq} -out all_sequences.aln -nwk input_tree.nwk -model LG  -gap -format FASTA  -seed 100 -extants {num_extants}  -dist {dist}"\
                     .format(seq=s,num_extants=num_extant,dist=d)
@@ -98,9 +98,9 @@ def eff_pos_20(base_folder):
 
 if __name__ == "__main__":
   base_folder = sys.argv[1] #'/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/data/travis/'
-  eff_pos_100(base_folder)
-  eff_pos_60(base_folder)
-  eff_pos_20(base_folder)
+  #eff_pos_100(base_folder)
+  #eff_pos_60(base_folder)
+  #eff_pos_20(base_folder)
   print("Finished running Travis")
   
   # post processing of travis
