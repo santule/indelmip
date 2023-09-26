@@ -98,9 +98,9 @@ def eff_pos_20(base_folder):
 
 if __name__ == "__main__":
   base_folder = sys.argv[1] #'/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/data/travis/'
-  #eff_pos_100(base_folder)
-  #eff_pos_60(base_folder)
-  #eff_pos_20(base_folder)
+  eff_pos_100(base_folder)
+  eff_pos_60(base_folder)
+  eff_pos_20(base_folder)
   print("Finished running Travis")
   
   # post processing of travis
@@ -108,4 +108,4 @@ if __name__ == "__main__":
   travis_post_processing.make_extants(base_folder)
 
   # check if the desired dataset satisfy the requirements.
-  travis_check.check_stats(base_folder,detail_print=True)
+  travis_check.check_stats(base_folder,detail_print=False)
