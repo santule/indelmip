@@ -11,3 +11,8 @@ To evaluate MIP solution
 ```
 python mip_evaluate.py -e  CYP2U_165.aln -n CYP2U_165_ancestors.nwk
 ```
+
+To generate synthetic indels using Travis
+```
+python travis_indels_generate.py
+```
