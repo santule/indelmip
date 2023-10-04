@@ -40,7 +40,7 @@ def data_processing(extant_sequence_file,nwk_file_path,folder_location):
     return extant_data,ancestor_data,neighbor_dict
 
 # build mip model and train
-def mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint=False):
+def mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint):
     # Create the MIP model
     start = time.time()
     print("Start Time:",start)
@@ -56,7 +56,8 @@ def mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint=Fa
     print("Adding Penalty Constraints")
     PyTree.add_penalty_constraint()
     # remove optimal solution
-    if optimal_constraint:
+    print(f"optimal_constraint {optimal_constraint}")
+    if optimal_constraint == 'Y':
         with open('optimal_edges.pkl','rb') as f:
             optimal_edge_list = pickle.load(f)
         print("Remove Optimal Solution")
@@ -94,11 +95,11 @@ def mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint=Fa
         print("Did not find any satisfactory solution to the model")
 
 # main function
-def main(extant_sequence_file,nwk_file_path,output_folder_location):
+def main(extant_sequence_file,nwk_file_path,output_folder_location,optimal_constraint):
     # 1 - process the input data for MIP
     extant_data,ancestor_data,neighbor_dict = data_processing(extant_sequence_file,nwk_file_path,output_folder_location)
     # 2 - build model
-    mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint=False)
+    mip_processing(extant_data,ancestor_data,neighbor_dict,optimal_constraint)
 
 if __name__ == "__main__":
-  main(extant_sequence_file,nwk_file_path,output_folder_location)
+  main(extant_sequence_file,nwk_file_path,output_folder_location,optimal_constraint)
