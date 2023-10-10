@@ -3,6 +3,7 @@ import sys
 import getopt
 import grasp_output_process,objective_scoring,indel_scoring,new_old_patterns,check_distribution,ancestor_3_mutation_away,ancestor_2_mutation_away
 from utils import write_to_file
+import site_3_mut_away
 
 # help function
 def help():
@@ -65,6 +66,9 @@ def main():
     print("7 - ANCESTORS 3 MUTATIONS AWAY")
     total_ancestors_i2_mut,percent_ancestors_with_2_mut = ancestor_2_mutation_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
 
+    # total sites with 3 mutation away
+    percent_total_sites_3_mut,total_sites_3_mut = site_3_mut_away.main(nwk_file_path,grasp_indel_method + '_grasp_all_indel.fasta')
+
     # write all numbers to the files
     print("8 - WRITING METRICS TO THE FILE")
     write_to_file(grasp_indel_method + '_objscore.csv',objscore,grasp_indel_method)
@@ -73,7 +77,7 @@ def main():
     write_to_file(grasp_indel_method + '_out_dist_percent.csv',out_dist_percent,grasp_indel_method)
     write_to_file(grasp_indel_method + '_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,grasp_indel_method)
     write_to_file(grasp_indel_method + '_percent_ancestors_with_2_mut.csv',percent_ancestors_with_2_mut,grasp_indel_method)
-
+    write_to_file(grasp_indel_method + '_sites_with_3_mut.csv',percent_total_sites_3_mut,grasp_indel_method)
 
 
 if __name__ == "__main__":

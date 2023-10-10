@@ -4,6 +4,7 @@
 import sys
 import getopt
 import objective_scoring,indel_scoring,new_old_patterns,check_distribution,ancestor_3_mutation_away,ancestor_2_mutation_away
+import site_3_mut_away
 from utils import write_to_file
 
 # help function
@@ -57,6 +58,9 @@ def main():
     print("7 - ANCESTORS 2 MUTATIONS AWAY")
     total_ancestors_i2_mut,percent_ancestors_with_2_mut = ancestor_2_mutation_away.main(nwk_file_path,'mip_ancestor_indel.fasta')
 
+    # total sites with 3 mutation away
+    percent_total_sites_3_mut,total_sites_3_mut = site_3_mut_away.main(nwk_file_path,'mip_ancestor_indel.fasta')
+
     # write all numbers to the files
     print("8 - WRITING METRICS TO THE FILE")
     write_to_file('mip_objscore.csv',objscore,'mip')
@@ -65,6 +69,7 @@ def main():
     write_to_file('mip_out_dist_percent.csv',out_dist_percent,'mip')
     write_to_file('mip_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,'mip')
     write_to_file('mip_percent_ancestors_with_2_mut.csv',percent_ancestors_with_2_mut,'mip')
+    write_to_file('mip_sites_with_3_mut.csv',total_sites_3_mut,'mip')
 
 if __name__ == "__main__":
   main()

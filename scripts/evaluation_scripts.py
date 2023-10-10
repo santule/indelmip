@@ -36,9 +36,10 @@ def main():
         help()
 
     script_folder = '/media/WorkingSpace/Share/mipindel/scripts/'
+    #script_folder = '/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/scripts/'
     
     # Run evaluation scripts
-    for pr in ['CYP2U_165','MBL_243','CYP2U_359','GDH-#GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','DHAD_1612','DHAD_1658','ALS_1990','MBL_624','CYP_3000']:
+    for pr in ['CYP2U_165','MBL_243','CYP2U_359','GDH-GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','DHAD_1612','DHAD_1658','ALS_1990','MBL_624','CYP_3000']:
 
       print(f"Processing protein family {pr}")
       align_file = pr + '.aln'
@@ -135,12 +136,12 @@ def main():
               print(cmd)
               subprocess.run(cmd,shell=True)
 
-              ## infer ancestors for MIP
-              # log_file   = 'log_grasp_sicp_full.txt'
-              # cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method SICP -pre 'sicp' --orphans -o {output_folder} > {log_file}".format(\
-              #           align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-              # print(cmd)
-              # subprocess.run(cmd,shell=True)
+              # infer ancestors for MIP
+            #   log_file   = 'log_grasp_sicp_full.txt'
+            #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method SICP -pre 'sicp' --orphans -o {output_folder} > {log_file}".format(\
+            #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+            #   print(cmd)
+            #   subprocess.run(cmd,shell=True)
 
               ## evaluation
               tree_file = 'psp_ancestors.nwk'
