@@ -7,7 +7,7 @@ import mipindel_altopt
 # help function
 def help():
     print("Incorrect or Incomplete command line arguments")
-    print('python main_mip_run.py -a alignment file | -n newick tree file | -o output file location | -m')
+    print('python main_mip_run.py -a alignment file | -n newick tree file | -o output file location | -m alternate optimal sol')
     exit()
 
 # main function

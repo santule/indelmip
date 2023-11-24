@@ -77,7 +77,7 @@ def main():
     write_to_file(grasp_indel_method + '_out_dist_percent.csv',out_dist_percent,grasp_indel_method)
     write_to_file(grasp_indel_method + '_percent_ancestors_with_3_mut.csv',percent_ancestors_with_3_mut,grasp_indel_method)
     write_to_file(grasp_indel_method + '_percent_ancestors_with_2_mut.csv',percent_ancestors_with_2_mut,grasp_indel_method)
-    write_to_file(grasp_indel_method + '_sites_with_3_mut.csv',percent_total_sites_3_mut,grasp_indel_method)
+    write_to_file(grasp_indel_method + '_sites_with_3_mut.csv',total_sites_3_mut,grasp_indel_method)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,10 @@
+'''
+Python scripts to run all indel inference methods. Run this script from the data folder.
+The data folders contains sub folders, each for one protein family.
+Sub folder expected to contain .aln and .nwk file.
+For MIP, branchpoints needs to be named, hence psp is run first.
+'''
+
 import os
 import subprocess
 import sys
@@ -35,11 +42,12 @@ def main():
     if run_bep is None or run_mip is None or run_psp is None or run_sicp is None:
         help()
 
-    script_folder = '/media/WorkingSpace/Share/mipindel/scripts/'
-    #script_folder = '/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/scripts/'
+    #script_folder = '/media/WorkingSpace/Share/mipindel/scripts/'
+    script_folder = '/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/scripts/'
     
     # Run evaluation scripts
-    for pr in ['CYP2U_165','MBL_243','CYP2U_359','GDH-GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','DHAD_1612','DHAD_1658','ALS_1990','MBL_624','CYP_3000']:
+    #'CYP2U_165','B3_225','MBL_243','CYP2U_359','GDH-GOx_399','DHAD_585','CYP2U_595','KARI_716','KARI_1176','ALPHA_1263','DHAD_1612',
+    for pr in ['CYP_1656']: #,'DHAD_1658','ALS_1990','MBL_624']:
 
       print(f"Processing protein family {pr}")
       align_file = pr + '.aln'
@@ -54,18 +62,18 @@ def main():
           if pr not in ['CYP_3000','MBL_624']:
               # BEP
               ## Inference
-              print(f"Processing BEP Inference")
-              log_file   = 'bep_inference_log.txt'
-              cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method BEP --onlyindel --save-all --threads 1 --orphans -pre 'bep' -o {output_folder}> {log_file}".format(\
-                        align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-              print(cmd)
-              subprocess.run(cmd,shell=True)
+            #   print(f"Processing BEP Inference")
+            #   log_file   = 'bep_inference_log.txt'
+            #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method BEP --onlyindel --save-all --threads 1 --orphans -pre 'bep' -o {output_folder}> {log_file}".format(\
+            #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+            #   print(cmd)
+            #   subprocess.run(cmd,shell=True)
 
-              log_file   = 'bep_inference_full_log.txt'
-              cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method BEP --orphans -pre 'bep' -o {output_folder} > {log_file}".format(\
-                        align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-              print(cmd)
-              subprocess.run(cmd,shell=True)
+            #   log_file   = 'bep_inference_full_log.txt'
+            #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method BEP --orphans -pre 'bep' -o {output_folder} > {log_file}".format(\
+            #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+            #   print(cmd)
+            #   subprocess.run(cmd,shell=True)
 
               ## evaluation
               grasp_tree = 'bep_ancestors.nwk'
@@ -78,18 +86,18 @@ def main():
       if run_psp == 'y':
           # PSP
           ## Inference
-          print(f"Processing PSP Inference")
-          log_file   = 'psp_inference_log.txt'
-          cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method PSP --onlyindel --save-all -pre 'psp' --threads 1 --orphans -o {output_folder} > {log_file}".format(\
-                    align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-          print(cmd)
-          subprocess.run(cmd,shell=True)
+        #   print(f"Processing PSP Inference")
+        #   log_file   = 'psp_inference_log.txt'
+        #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method PSP --onlyindel --save-all -pre 'psp' --threads 1 --orphans -o {output_folder} > {log_file}".format(\
+        #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+        #   print(cmd)
+        #   subprocess.run(cmd,shell=True)
 
-          log_file   = 'psp_inference_full_log.txt'
-          cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method PSP -pre 'psp' --orphans -o {output_folder} > {log_file}".format(\
-                    align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-          print(cmd)
-          subprocess.run(cmd,shell=True)
+        #   log_file   = 'psp_inference_full_log.txt'
+        #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method PSP -pre 'psp' --orphans -o {output_folder} > {log_file}".format(\
+        #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+        #   print(cmd)
+        #   subprocess.run(cmd,shell=True)
 
           ## evaluation
           grasp_tree = 'psp_ancestors.nwk'
@@ -103,18 +111,18 @@ def main():
       if run_sicp == 'y':
           # SICP
           ## Inference
-          print(f"Processing SICP Inference")
-          log_file   = 'sicp_inference_log.txt'
-          cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method SICP --onlyindel --save-all -pre 'sicp'  --threads 1 --orphans -o {output_folder} > {log_file}".format(\
-                  align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-          print(cmd)
-          subprocess.run(cmd,shell=True)
+        #   print(f"Processing SICP Inference")
+        #   log_file   = 'sicp_inference_log.txt'
+        #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose --indel-method SICP --onlyindel --save-all -pre 'sicp'  --threads 1 --orphans -o {output_folder} > {log_file}".format(\
+        #           align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+        #   print(cmd)
+        #   subprocess.run(cmd,shell=True)
 
-          log_file   = 'sicp_inference_full_log.txt'
-          cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method SICP -pre 'sicp' --orphans -o {output_folder} > {log_file}".format(\
-                    align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
-          print(cmd)
-          subprocess.run(cmd,shell=True)
+        #   log_file   = 'sicp_inference_full_log.txt'
+        #   cmd = "grasp -a {align_file} -n {tree_file} --time --verbose -s LG --save-as FASTA --indel-method SICP -pre 'sicp' --orphans -o {output_folder} > {log_file}".format(\
+        #             align_file = align_file,tree_file=tree_file,log_file=log_file,output_folder=output_folder)
+        #   print(cmd)
+        #   subprocess.run(cmd,shell=True)
 
           ## evaluation
           grasp_tree = 'sicp_ancestors.nwk'
@@ -129,12 +137,12 @@ def main():
           if pr not in ['CYP_3000']:
               # MIP
               ## Inference
-              print(f"Running MIP")
-              tree_file = 'psp_ancestors.nwk'
-              log_file = 'mip_inference_log.txt'
-              cmd = "python /media/WorkingSpace/Share/mipindel/scripts/main_mip_run.py -a {align_file} -n {tree_file} -o '.' > {log_file}".format(align_file=align_file,tree_file=tree_file,log_file=log_file)
-              print(cmd)
-              subprocess.run(cmd,shell=True)
+            #   print(f"Running MIP")
+            #   tree_file = 'psp_ancestors.nwk'
+            #   log_file = 'mip_inference_log.txt'
+            #   cmd = "python /media/WorkingSpace/Share/mipindel/scripts/main_mip_run.py -a {align_file} -n {tree_file} -o '.' > {log_file}".format(align_file=align_file,tree_file=tree_file,log_file=log_file)
+            #   print(cmd)
+            #   subprocess.run(cmd,shell=True)
 
               # infer ancestors for MIP
             #   log_file   = 'log_grasp_sicp_full.txt'

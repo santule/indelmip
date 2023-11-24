@@ -7,7 +7,7 @@ from os import walk
 # help function
 def help():
     print("Incorrect or Incomplete command line arguments")
-    print('python evaluation_scripts.py -b y -m y -p y -s y')
+    print('python travis_indel_evaluation_scripts.py -b y -m y -p y -s y')
     exit()
 
 # main function
@@ -38,7 +38,7 @@ def main():
 
     script_folder = '/media/WorkingSpace/Share/mipindel/scripts/'
     
-    # run the script from travis_200 etc. folder...
+    # run the script from travis folder...
     for (sub_folder, _, _) in walk('.'):
         if sub_folder != '.':
             sub_folder = sub_folder

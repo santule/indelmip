@@ -7,8 +7,9 @@ import sys
 
 def fasta_to_json():
 
-    indel_fasta_solution_file = 'mip_ancestor_indel.fasta'
+    indel_fasta_solution_file = 'mip_ancestor_indel2.fasta'
     asr_json_file = 'ASR.json'
+
     # read the asr json file
     f = open(asr_json_file)
     asr_json_data = json.load(f)
@@ -57,7 +58,7 @@ def fasta_to_json():
         a["Edges"] = [edges_repeat for i in range(len(a["Edgeindices"]))]
 
     # Dump the output in the file
-    with open('ASR_MIP.json', 'w') as outfile:
+    with open('ASR_MIP2.json', 'w') as outfile:
         json.dump(asr_json_data, outfile)
 
 

@@ -9,11 +9,11 @@ import os
 import sys
 
 # seperate ancestor from extants
-def seperate_ancestor_extants(folder,tree_file,all_seq_file):
-    tree_file = open(folder + tree_file,"r")
+def seperate_ancestor_extants(folder):
+    tree_file = open(folder + 'input_tree.nwk',"r")
     my_tree = tree_file.read() + ";"
     tree = Tree(my_tree, format=1)
-    sequences_fasta_info = FastaFile(folder + all_seq_file)
+    sequences_fasta_info = FastaFile(folder + 'all_sequences.aln')
 
     with open(folder + 'extants.aln',mode='w') as fout:
         for n in tree.traverse(): # level order
@@ -92,4 +92,5 @@ def check_stats(folder,detail_print=False):
 
 if __name__ == "__main__":
   folder = sys.argv[1] #'/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/data/travis_500/'
-  check_stats(folder,detail_print=False)
+  #check_stats(folder,detail_print=False)
+  seperate_ancestor_extants(folder)

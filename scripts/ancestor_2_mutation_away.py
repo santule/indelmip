@@ -11,11 +11,11 @@ def count_mutations(p,n,c1,c2):
     i2 = 0
     for i in range(0,len(n)):
         if n[i] != p[i] and n[i] != c1[i] and n[i] == c2[i]:
-            i2 += 1
+            i2 += 0
         if n[i] == p[i] and n[i] != c1[i] and n[i] != c2[i]:
             i2 += 1
         if n[i] != p[i] and n[i] == c1[i] and n[i] != c2[i]:
-            i2 += 1
+            i2 += 0
 
     if i2 > 0:
         return 1

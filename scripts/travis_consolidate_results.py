@@ -88,7 +88,6 @@ def get_stats(sub_folder):
 
     return sequence_length,total_sequences,eff_pos_percent,avg_edges
 
-
 def csv_pivot(csv_file,value_col_name):
     pd_data = pd.read_csv(csv_file)
     print(pd_data.head(5))
@@ -99,21 +98,18 @@ def csv_pivot(csv_file,value_col_name):
     print("finished summarizing experimental results")
 
 ### MAIN PROGRAM ###
-
 synthetic_stat = {}
 sample_file = 'extants.aln'
-experiment_result_folder = '/media/WorkingSpace/Share/mipindel/evaluation/synthetic/'
-data_folder = '/media/WorkingSpace/Share/mipindel/data/travis'
+experiment_result_folder = '/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/evaluation/synthetic/'
+data_folder = '/Users/sanjanatule/Documents/uq/Projects/Indels/indelmip/data/travis/'
 
 # get the stat of synthetic dataset
 for (sub_folder, _, _) in walk(data_folder):
     os.chdir(sub_folder)
     if os.path.exists(sample_file):
-        print(sub_folder)
         sequence_length,total_sequences,eff_pos_percent,avg_edges = get_stats(sub_folder) 
         data_idx = sub_folder.split('/')[-1]
         synthetic_stat[data_idx] = (sequence_length,total_sequences,round(eff_pos_percent,2),round(avg_edges,2))
-
 
 # collect experiment results
 print('Getting Indel scores')
@@ -126,7 +122,6 @@ with open(experiment_result_folder + 'indel_diff_evaluation.csv', 'w') as outfil
                 for line in infile:
                     pr = sub_folder.split('/')[-1]
                     outfile.write(pr + ',' + str(synthetic_stat[pr][0]) + ',' + str(synthetic_stat[pr][1]) + ',' + str(synthetic_stat[pr][2]) + ',' + str(synthetic_stat[pr][3]) + ',' + line + '\n' )
-
 csv_pivot(experiment_result_folder + 'indel_diff_evaluation.csv','score')
 
 print('Getting Out of Distribution scores')
@@ -164,3 +159,16 @@ with open(experiment_result_folder + 'ancestors_2_mutation.csv', 'w') as outfile
                     pr = sub_folder.split('/')[-1]
                     outfile.write(pr + ',' + str(synthetic_stat[pr][0]) + ',' + str(synthetic_stat[pr][1]) + ',' + str(synthetic_stat[pr][2]) + ',' + str(synthetic_stat[pr][3]) + ',' + line + '\n' )
 csv_pivot(experiment_result_folder + 'ancestors_2_mutation.csv','ancestors_2_mutation_percent')
+
+
+print('Getting 3 Mutation site scores')
+with open(experiment_result_folder + 'sites_with_3_mut.csv', 'w') as outfile:
+    outfile.write('protein_family,sequence_length,total_sequences,eff_pos_percent,avg_edges,method,sites_with_3_mut\n')
+    for (sub_folder, _, _) in walk(data_folder):
+        os.chdir(sub_folder)
+        for fname in glob.glob("*sites_with_3_mut*"):
+            with open(fname) as infile:
+                for line in infile:
+                    pr = sub_folder.split('/')[-1]
+                    outfile.write(pr + ',' + str(synthetic_stat[pr][0]) + ',' + str(synthetic_stat[pr][1]) + ',' + str(synthetic_stat[pr][2]) + ',' + str(synthetic_stat[pr][3]) + ',' + line + '\n' )
+csv_pivot(experiment_result_folder + 'sites_with_3_mut.csv','sites_with_3_mut')
