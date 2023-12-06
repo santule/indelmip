@@ -2,15 +2,19 @@ from pysam import FastaFile,FastxFile
 from ete3 import Tree
 import csv
 
-folder = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/'
+folder = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/'
 nwk_file_path = folder + '/psp_ancestors.nwk'
-#sol1 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/mip_ancestor_indel1.fasta'
-#sol2 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/mip_ancestor_indel2.fasta'
-annotation_file = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/ALPHA_1263_annot.csv'
 
-sol1 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/mip1_ancestors.fa'
-sol2 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/ALPHA_1263/mip2_ancestors.fa'
+# indel solutions
+#sol1 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/mip_ancestor_indel1.fasta'
+#sol2 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/mip_ancestor_indel2.fasta'
+#annotation_file = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/RHYS_1263_annot_indels.csv'
 
+
+# substitution solutions
+sol1 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/mip1_ancestors.fa'
+sol2 = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/mip2_ancestors.fa'
+annotation_file = '/media/WorkingSpace/Share/mipindel/data/real_mip_altopt/RHYS_1263/RHYS_1263_annot_ancestors.csv'
 
 tree_file = open(nwk_file_path,"r")
 my_tree = tree_file.read() + ";"
