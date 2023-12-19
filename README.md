@@ -1,18 +1,24 @@
-# Inferring indel events in protein families using Mixed-Integer Programming for cohesive evolutionary history
+# Optimal Phylogenetic Reconstruction of Insertion and Deletion Events.
+
+![combined_tree_plot](https://github.com/santule/indelmip/assets/20509836/9a3a5840-66bf-4882-bc55-f99863e8bc31)
 
 
-To run the Mixed-Integer Program for ancestral indel inference for a given extant alignment file and internal branchpoint annotated phylogenetic tree
+To run the Mixed-Integer Program for indel inference for a given extant alignment file and internal branchpoint annotated phylogenetic tree
 
 ```
-python main_mip_run.py -a CYP2U_165.aln -n CYP2U_165_ancestors.nwk -o '.'
+python run_mipindel.py -a alignment file -n phylogenetic tree -o '.' -p 2
 ```
 
 To evaluate MIP solution 
 ```
-python mip_evaluate.py -e  CYP2U_165.aln -n CYP2U_165_ancestors.nwk
+python metrics_mip.py -f '.' -e  alignment file -n phylogenetic tree
+```
+To run indel inference on all methods
+```
+python run_indel_real_datasets.py -f folder_location -b y -m y -p y -s y
 ```
 
 To generate synthetic indels using Travis
 ```
-python travis_indels_generate.py ./data/travis/
+python generate_syn_indels.py /data/travis/
 ```
