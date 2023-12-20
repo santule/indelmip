@@ -5,21 +5,21 @@
 To run the Mixed-Integer Program for indel inference for a given extant alignment file and internal branchpoint annotated phylogenetic tree
 
 ```
-python run_mipindel.py -a alignment file -n phylogenetic tree -o folder_location -p 2
+python run_mipindel.py -a <alignment file> -n <phylogenetic tree> -o <folder_location> -p <alpha>
 ```
 
 To evaluate MIP solution 
 ```
-python metrics_mip.py -f folder_location -e  alignment file -n phylogenetic tree
+python metrics_mip.py -f <folder_location> -e  <alignment file> -n <phylogenetic tree>
 ```
 To run indel inference on all methods
 ```
-python run_indel_real_datasets.py -f folder_location -b y -m y -p y -s y
+python run_indel_real_datasets.py -f <folder_location> -b <y/n> -m <y/n> -p <y/n> -s <y/n>
 ```
 
 To generate synthetic indels using Travis
 ```
-python generate_syn_indels.py /data/travis/
+python generate_syn_indels.py <folder_location>
 ```
 
 ## Solutions from MIP and other methods visualised for RNaseZ_624
