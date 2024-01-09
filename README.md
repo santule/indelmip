@@ -24,6 +24,9 @@ arguments:
   -n  ancestors annotated phylogenetic tree in newick format
   -o  folder location where the output files will be stored
   -p  alpha hyperparameter value. e.g. 2
+
+example:
+python run_mipindel.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -p 2
 ```
 
 To evaluate MIP solution 
@@ -34,6 +37,9 @@ arguments:
   -f  folder location where all the files for protein family are stored
   -a  fasta format alignment file
   -n  ancestors annotated phylogenetic tree in newick format
+
+example:
+python metrics_mip.py -f /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -a  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk
 ```
 To run indel inference on all methods
 ```
@@ -45,13 +51,19 @@ arguments:
   -m  run MIP indel inference method
   -p  run PSP indel inference method
   -s  run SICP indel inference method
+
+
 ```
 
 To generate synthetic indels using Travis
 Travis is part of GRASP suite [[1]](#1).
 ```
 python generate_syn_indels.py <folder_location>
+
+example:
+python generate_syn_indels.py /media/WorkingSpace/Share/indelmip/data/synthetic_data/
 ```
+
 
 ### Example solution visualisation from MIP and other methods for RNaseZ_624 family
 
