@@ -1,6 +1,18 @@
-# Optimal Phylogenetic Reconstruction of Insertion and Deletion Events.
-![image](https://github.com/santule/indelmip/assets/20509836/27d8b32e-e88b-43cb-a71b-ddd09a87efd8)
+# Optimal Phylogenetic Reconstruction of Insertion and Deletion Events
+A Mixed-Integer program approach to infer indel history for protein families in phylogenetic tree. We also introduce the use of partial order graph to capture multi site dependency in molecular sequences.
+The resulting indel patterns can be used for Ancestral sequence reconstuction (ASR). 
 
+<img src="https://github.com/santule/indelmip/assets/20509836/27d8b32e-e88b-43cb-a71b-ddd09a87efd8" width="400" height="400"/> 
+
+Inputs to the method ::
+* MSA (fasta format)
+* Phylogenetic tree (newick format)
+
+### Prerequisites
+* GRASP  https://bodenlab.github.io/GRASP-suite/project/graspcmd/
+* Gurobi https://www.gurobi.com/
+
+### Running the method
 
 To run the Mixed-Integer Program for indel inference for a given extant alignment file and internal branchpoint annotated phylogenetic tree
 
@@ -22,6 +34,6 @@ To generate synthetic indels using Travis
 python generate_syn_indels.py <folder_location>
 ```
 
-## Solutions from MIP and other methods visualised for RNaseZ_624
+### Example solution visualisation from MIP and other methods for RNaseZ_624 family
 
-![combined_tree_plot](https://github.com/santule/indelmip/assets/20509836/9a3a5840-66bf-4882-bc55-f99863e8bc31)
+<img src="https://github.com/santule/indelmip/assets/20509836/9a3a5840-66bf-4882-bc55-f99863e8bc31" width="500" height="500"/> 
