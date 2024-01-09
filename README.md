@@ -26,7 +26,7 @@ arguments:
   -p  alpha hyperparameter value. e.g. 2
 
 example:
-python run_mipindel.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -p 2
+python run_mipindel.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_annotated_165.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -p 2
 ```
 
 To evaluate MIP Indel solution
@@ -39,7 +39,7 @@ arguments:
   -n  ancestors annotated phylogenetic tree in newick format
 
 example:
-python metrics_mip.py -f /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -a  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk
+python metrics_mip.py -f /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -a  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_annotated_165.nwk
 ```
 To run indel inference and evulation metrics on all indel methods for a protein family
 ```
@@ -55,7 +55,7 @@ arguments:
   -s  run SICP indel inference method
 
 example:
-
+python run_all_indel_methods.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -b y -m y -s y -p y
 ```
 
 To generate synthetic indels using Travis
