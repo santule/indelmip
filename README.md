@@ -21,19 +21,19 @@ python run_mipindel.py -a <alignment file> -n <phylogenetic tree> -o <folder_loc
 
 arguments:
   -a  fasta format alignment file
-  -n  phylogenetic tree in newick format
+  -n  ancestors annotated phylogenetic tree in newick format
   -o  folder location where the output files will be stored
   -p  alpha hyperparameter value. e.g. 2
 ```
 
 To evaluate MIP solution 
 ```
-python metrics_mip.py -f <folder_location> -e  <alignment file> -n <phylogenetic tree>
+python metrics_mip.py -f <folder_location> -a  <alignment file> -n <phylogenetic tree>
 
 arguments:
   -f  folder location where all the files for protein family are stored
-  -e  ouput of the mipmodel.py fasta file consisting of ancestors and extants
-  -n  phylogenetic tree in newick format
+  -a  fasta format alignment file
+  -n  ancestors annotated phylogenetic tree in newick format
 ```
 To run indel inference on all methods
 ```
