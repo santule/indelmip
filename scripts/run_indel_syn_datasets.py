@@ -145,7 +145,7 @@ def eval_syn():
                 ## evaluation
                 tree_file = sub_folder + 'psp_ancestors.nwk'
                 eval_log_file = sub_folder + 'mip_evaluate_log.txt'
-                cmd = "python metrics_mip.py  -f {pr_folder} -e {align_file} -n {tree_file} > {eval_log_file}".\
+                cmd = "python metrics_mip.py  -f {pr_folder} -a {align_file} -n {tree_file} > {eval_log_file}".\
                     format(align_file = align_file,tree_file=tree_file,\
                            eval_log_file=eval_log_file,pr_folder = sub_folder)
                 print(cmd)

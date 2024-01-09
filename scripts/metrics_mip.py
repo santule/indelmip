@@ -8,7 +8,7 @@ from utils import write_to_file
 # help function
 def help():
     print("Incorrect or Incomplete command line arguments")
-    print('python metrics_mip.py -f data_folder | -e input extant file | -n newick tree file')
+    print('python metrics_mip.py -f data_folder | -a input extant file | -n newick tree file')
     exit()
 
 # main function
@@ -19,13 +19,13 @@ def main():
     data_folder = None
 
     argv = sys.argv[1:]
-    opts, _ = getopt.getopt(argv, "f:e:n:")
+    opts, _ = getopt.getopt(argv, "f:a:n:")
 
     if len(opts) == 0:
         help()
 
     for opt, arg in opts:
-        if opt in ['-e']:
+        if opt in ['-a']:
             alignment_file = arg
         elif opt in ['-n']:
             nwk_file_path = arg

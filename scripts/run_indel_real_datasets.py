@@ -147,7 +147,7 @@ def eval_real():
             ## evaluation
             tree_file = data_folder + pr + '/' + 'psp_ancestors.nwk'
             eval_log_file = data_folder + pr + '/' + 'mip_evaluate_log.txt'
-            cmd = "python metrics_mip.py -f {pr_folder} -e {align_file} -n {tree_file} > {eval_log_file}".\
+            cmd = "python metrics_mip.py -f {pr_folder} -a {align_file} -n {tree_file} > {eval_log_file}".\
                 format(align_file = align_file,tree_file=tree_file,eval_log_file=eval_log_file,pr_folder = data_folder + pr + '/')
             print(cmd)
             subprocess.run(cmd,shell=True)
