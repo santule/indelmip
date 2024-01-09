@@ -29,7 +29,7 @@ example:
 python run_mipindel.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -p 2
 ```
 
-To evaluate MIP solution 
+To evaluate MIP Indel solution
 ```
 python metrics_mip.py -f <folder_location> -a  <alignment file> -n <phylogenetic tree>
 
@@ -41,17 +41,20 @@ arguments:
 example:
 python metrics_mip.py -f /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -a  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n /media/WorkingSpace/Share/indelmip/data/CYP2U_165/psp_ancestors.nwk
 ```
-To run indel inference on all methods
+To run indel inference and evulation metrics on all indel methods for a protein family
 ```
-python run_indel_real_datasets.py -f <folder_location> -b <y/n> -m <y/n> -p <y/n> -s <y/n>
+python run_all_indel_methods.py -a <alignment file> -n <phylogenetic tree> -o <folder_location> -b <y/n> -m <y/n> -p <y/n> -s <y/n>
 
 arguments:
-  -f  folder location where all the files for protein family are stored
+  -a  fasta format alignment file
+  -n  ancestors annotated phylogenetic tree in newick format
+  -o  folder location where the output files will be stored
   -b  run BEP indel inference method
   -m  run MIP indel inference method
   -p  run PSP indel inference method
   -s  run SICP indel inference method
 
+example:
 
 ```
 
