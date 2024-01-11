@@ -2,7 +2,7 @@
 A Mixed-Integer program approach to infer indel history for protein families in phylogenetic tree. We also introduce the use of partial order graph to capture multi site dependency in molecular sequences.
 The resulting indel patterns can be used for Ancestral sequence reconstuction (ASR). 
 
-<img src="https://github.com/santule/indelmip/assets/20509836/27d8b32e-e88b-43cb-a71b-ddd09a87efd8" width="400" height="400"/> 
+<img src="https://github.com/santule/indelmip/assets/20509836/27d8b32e-e88b-43cb-a71b-ddd09a87efd8" width="450" height="400"/> 
 
 Inputs to the method ::
 * MSA (fasta format)
