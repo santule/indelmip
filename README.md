@@ -26,7 +26,7 @@ arguments:
   -p  alpha hyperparameter value. e.g. 2
 
 example:
-python run_mipindel.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_annotated_165.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -p 2
+python run_mipindel.py -a /data/CYP2U_165/CYP2U_165.aln -n  /data/CYP2U_165/CYP2U_annotated_165.nwk -o /data/CYP2U_165/ -p 2
 ```
 
 To evaluate MIP Indel solution
@@ -39,7 +39,7 @@ arguments:
   -n  ancestors annotated phylogenetic tree in newick format
 
 example:
-python metrics_mip.py -f /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -a  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_annotated_165.nwk
+python metrics_mip.py -f /data/CYP2U_165/ -a  /data/CYP2U_165/CYP2U_165.aln -n /data/CYP2U_165/CYP2U_annotated_165.nwk
 ```
 To run indel inference and evulation metrics on all indel methods for a protein family
 ```
@@ -55,7 +55,7 @@ arguments:
   -s  run SICP indel inference method
 
 example:
-python run_all_indel_methods.py -a /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.aln -n  /media/WorkingSpace/Share/indelmip/data/CYP2U_165/CYP2U_165.nwk -o /media/WorkingSpace/Share/indelmip/data/CYP2U_165/ -b y -m y -s y -p y
+python run_all_indel_methods.py -a /data/CYP2U_165/CYP2U_165.aln -n  /data/CYP2U_165/CYP2U_165.nwk -o /data/CYP2U_165/ -b y -m y -s y -p y
 ```
 
 To generate synthetic indels using Travis
@@ -64,9 +64,21 @@ Travis is part of GRASP suite [[1]](#1).
 python generate_syn_indels.py <folder_location>
 
 example:
-python generate_syn_indels.py /media/WorkingSpace/Share/indelmip/data/synthetic_data/
+python generate_syn_indels.py /data/synthetic_data/
 ```
 
+To run MIP Indel inferece to find multiple optimal solutions (example 2 optimal solutions here)
+```
+python eval_mip_altopt.py -a <alignment file> -n <phylogenetic tree> -o <folder_location>
+
+arguments:
+  -a  fasta format alignment file
+  -n  ancestors annotated phylogenetic tree in newick format
+  -o  folder location where the output files will be stored
+
+example:
+python eval_mip_altopt.py -o /data/CYP2U_165/ -n /data/CYP2U_165/CYP2U_annotated_165.nwk -a /data/CYP2U_165/CYP2U_165.aln
+```
 
 ### Example solution visualisation from MIP and other methods for RNaseZ_624 family
 
