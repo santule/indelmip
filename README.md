@@ -67,6 +67,27 @@ example:
 python generate_syn_indels.py /data/synthetic_data/
 ```
 
+To generate synthetic data with Travis using different settings
+```
+# TRAVIS COMMAND LINES
+
+Usage: asr.TrAVIS
+	[<ancestor-seq>]
+	[-nwk <tree-file> -out <output-file-or-dir>]
+	{-model <JTT(default)|Dayhoff|LG|WAG|JC|Yang>}
+	{-rates <a>}
+	{-seed <random>}
+	{-extants <5(default)>}
+	{-dist <mean-extant-to-root>
+	{-shape <1.1(default)>}
+	{-scale <0.2(default)>}
+	{-indel <param>}
+	{-gap}
+	{-format <FASTA(default)|CLUSTAL|DOT|TREE|RATES|DIR>}
+
+# create toy trees using travis
+travis AAAAAAAA -out all_sequences.aln -nwk input_tree.nwk -model LG  -gap -format FASTA  -seed 200 -extants 10  -dist 0.1
+```
 To run MIP Indel inferece to find multiple optimal solutions (example 2 optimal solutions here)
 ```
 python eval_mip_altopt.py -a <alignment file> -n <phylogenetic tree> -o <folder_location>
