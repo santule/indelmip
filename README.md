@@ -39,7 +39,7 @@ arguments:
   -n  ancestors annotated phylogenetic tree in newick format
 
 example:
-python metrics_mip.py -f /data/CYP2U_165/ -a  /data/CYP2U_165/CYP2U_165.aln -n /data/CYP2U_165/CYP2U_annotated_165.nwk
+python metrics_mip.py -f /example/data/ -a  /example/data/extants.aln -n /example/data/org_tree_annonated.nwk
 ```
 To run indel inference and evulation metrics on all indel methods for a protein family
 ```
@@ -55,7 +55,7 @@ arguments:
   -s  run SICP indel inference method
 
 example:
-python run_all_indel_methods.py -a /data/CYP2U_165/CYP2U_165.aln -n  /data/CYP2U_165/CYP2U_165.nwk -o /data/CYP2U_165/ -b y -m y -s y -p y
+python run_all_indel_methods.py -a /example/data/extants.aln -n  /example/data/org_tree_annonated.nwk -o /example/data/ -b y -m y -s y -p y
 ```
 
 To generate synthetic indels using Travis
@@ -98,7 +98,7 @@ arguments:
   -o  folder location where the output files will be stored
 
 example:
-python eval_mip_altopt.py -o /data/CYP2U_165/ -n /data/CYP2U_165/CYP2U_annotated_165.nwk -a /data/CYP2U_165/CYP2U_165.aln
+python eval_mip_altopt.py -o /example/data/ -n /example/data/org_tree_annonated.nwk -a /example/data/extants.aln
 ```
 
 ### Example solution visualisation from MIP and other methods for RNaseZ_624 family
