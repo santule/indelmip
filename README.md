@@ -26,7 +26,7 @@ arguments:
   -p  alpha hyperparameter value. e.g. 2
 
 example:
-python run_mipindel.py -a /example/data/extants.aln -n  /example/data/org_tree_annonated.nwk -o /example/data/ -p 2
+python run_mipindel.py -a /examples/data/extants.aln -n  /examples/data/org_tree_annonated.nwk -o /example/data/ -p 2
 ```
 
 To evaluate MIP Indel solution
@@ -39,7 +39,7 @@ arguments:
   -n  ancestors annotated phylogenetic tree in newick format
 
 example:
-python metrics_mip.py -f /example/data/ -a  /example/data/extants.aln -n /example/data/org_tree_annonated.nwk
+python metrics_mip.py -f /examples/data/ -a  /examples/data/extants.aln -n /examples/data/org_tree_annonated.nwk
 ```
 To run indel inference and evulation metrics on all indel methods for a protein family
 ```
@@ -55,7 +55,7 @@ arguments:
   -s  run SICP indel inference method
 
 example:
-python run_all_indel_methods.py -a /example/data/extants.aln -n  /example/data/org_tree_annonated.nwk -o /example/data/ -b y -m y -s y -p y
+python run_all_indel_methods.py -a /examples/data/extants.aln -n  /examples/data/org_tree_annonated.nwk -o /examples/data/ -b y -m y -s y -p y
 ```
 
 To generate synthetic indels using Travis
@@ -98,7 +98,7 @@ arguments:
   -o  folder location where the output files will be stored
 
 example:
-python eval_mip_altopt.py -o /example/data/ -n /example/data/org_tree_annonated.nwk -a /example/data/extants.aln
+python eval_mip_altopt.py -o /examples/data/ -n /examples/data/org_tree_annonated.nwk -a /examples/data/extants.aln
 ```
 
 ### Example solution visualisation from MIP and other methods for RNaseZ_624 family
