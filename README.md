@@ -26,7 +26,7 @@ arguments:
   -p  alpha hyperparameter value. e.g. 2
 
 example:
-python run_mipindel.py -a /examples/data/extants.aln -n  /examples/data/org_tree_annonated.nwk -o /example/data/ -p 2
+python run_mipindel.py -a /examples/data/extants.aln -n  /examples/data/org_tree_annonated.nwk -o /examples/data/ -p 2
 ```
 
 To evaluate MIP Indel solution
